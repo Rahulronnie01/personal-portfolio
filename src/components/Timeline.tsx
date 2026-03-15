@@ -4,36 +4,64 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 const TIMELINE_DATA = [
-  {
-    year: "2024 - Present",
-    title: "Full Stack Developer",
-    org: "Freelance & Open Source",
-    description: "Architecting enterprise-scale applications like 'Elite Hotel' (Microservices) and 'Nxtcart' (E-commerce). Expertise in Next.js, Docker, Kubernetes, and Cloud Architecture.",
-    type: "work",
-  },
-  {
-    year: "2023",
-    title: "The Pivot to Tech",
-    org: "Self-Taught Journey",
-    description: "Graduated with a Bachelor of Commerce but discovered a passion for problem-solving. Dedicated 1000+ hours to mastering the MERN stack and software engineering fundamentals.",
-    type: "milestone",
-  },
-  {
-    year: "2020 - 2023",
-    title: "Bachelor of Commerce",
-    org: "Calicut University",
-    description: "Graduated with a specialization in Co-operation. Developed a strong analytical mindset and understanding of business logic.",
-    type: "education",
-  },
-  {
-    year: "2018 - 2020",
-    title: "Computer Applications",
-    org: "GHSS Tirurangadi",
-    description: "Higher Secondary in Commerce with Computer Applications. Early exposure to programming concepts which sparked my initial interest in tech.",
-    type: "education",
-  },
-];
 
+{
+year: "Apr 2025 – Present",
+title: "Social Media Manager",
+org: "MetaNinza Gaming Pvt. Ltd.",
+description:
+"Leading social media strategy, content planning and growth initiatives across Instagram, YouTube, X, Facebook and LinkedIn. I collaborate with designers, video editors and creators to produce high-performing reels, carousels and campaigns that grow brand visibility and community engagement.",
+metrics: [
+"47% Instagram growth in 3 months",
+"200K+ organic views generated",
+"52% engagement boost via influencers"
+],
+type: "work",
+},
+
+{
+year: "Nov 2021 – Aug 2024",
+title: "Social Media Manager",
+org: "Rooter Sports Technologies",
+description:
+"Managed social media marketing and community engagement for India’s largest esports platform. Built structured content calendars, collaborated with marketing and product teams, and optimized content strategy using analytics and audience insights.",
+metrics: [
+"62% follower growth",
+"49% boost in post interactions",
+"29% increase in user retention"
+],
+type: "work",
+},
+
+{
+year: "Feb 2021 – Oct 2021",
+title: "Social Media Intern",
+org: "Rooter Sports Technologies",
+description:
+"Began my professional journey in esports marketing by supporting social campaigns and community engagement initiatives. Assisted with event campaigns, competitor research and engagement-driven content creation.",
+metrics: [
+"10+ gaming events supported",
+"Early community engagement campaigns",
+"Hands-on marketing execution"
+],
+type: "work",
+},
+
+{
+year: "2019 – 2022",
+title: "Bachelor of Computer Applications",
+org: "JNU University",
+description:
+"Completed my BCA with a CGPA of 9.0 while developing strong analytical and digital skills. During this period I became deeply interested in social media platforms, audience psychology and digital growth strategies.",
+metrics: [
+"CGPA 9.0",
+"Developed digital analytics mindset",
+"Foundation in tech & data"
+],
+type: "education",
+},
+
+];
 export default function Timeline() {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -57,8 +85,8 @@ export default function Timeline() {
              My <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-400">Journey</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
-            From writing my first "Hello World" to building complex applications. 
-            Here is a glimpse into my professional evolution.
+            From exploring social media platforms to helping brands
+grow their audience, engagement, and digital presence.
           </p>
         </motion.div>
 
@@ -110,12 +138,26 @@ function TimelineItem({ item, index }: { item: any; index: number }) {
             </h3>
           </div>
           
-          <p className="text-sm text-purple-300 mb-4 font-medium uppercase tracking-wider">
-            {item.org}
-          </p>
-          <p className="text-gray-400 text-sm leading-relaxed">
-            {item.description}
-          </p>
+          <p className="text-sm text-purple-300 mb-2 font-medium uppercase tracking-wider">
+  {item.org}
+</p>
+
+<p className="text-gray-400 text-sm leading-relaxed">
+  {item.description}
+</p>
+
+{item.metrics && (
+ <div className={`flex flex-wrap gap-2 mt-4 ${isEven ? "md:justify-end" : "md:justify-start"}`}>
+    {item.metrics.map((metric: string, i: number) => (
+      <span
+        key={i}
+        className="text-xs px-3 py-1 bg-blue-500/10 border border-blue-500/30 rounded-full text-blue-300"
+      >
+        {metric}
+      </span>
+    ))}
+  </div>
+)}
         </div>
       </div>
     </motion.div>

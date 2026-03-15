@@ -1,39 +1,130 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { motion, AnimatePresence, useAnimation } from "framer-motion";
+import { useState, useEffect } from "react";
+import { useRef } from "react";
 
 const TESTIMONIALS = [
   {
-    quote: "Fawaz delivered exceptional code on the Elite Hotel project. His understanding of microservices is top-notch.",
-    name: "Alex Morgan",
-    role: "Project Manager, Elite Hotel",
-    initials: "AM",
+    quote:
+      "Rahul helped us optimize our Instagram growth strategy and build a strong content system that improved our reach and engagement.",
+    name: "Rohit Sharma",
+    role: "Founder, Quickflo (SaaS Growth Platform)",
+    initials: "QF"
   },
   {
-    quote: "The Nxtcart platform is blazing fast. Fawaz's optimization skills significantly improved our conversion rates.",
-    name: "Sarah Chen",
-    role: "CTO, Nxtcart",
-    initials: "SC",
+    quote:
+      "Our fashion brand saw significant engagement growth after Rahul restructured our reels strategy and content calendar.",
+    name: "Aman Jain",
+    role: "Founder, Bunaiwala (Women's Ethnic Fashion)",
+    initials: "BW"
   },
   {
-    quote: "A true professional. He transformed our messy codebase into a clean, scalable architecture.",
-    name: "David Smith",
-    role: "Lead Dev, TechStart",
-    initials: "DS",
+    quote:
+      "Rahul understands how to grow D2C fashion brands through reels, storytelling, and community building.",
+    name: "Sneha Gupta",
+    role: "Founder, Kurtipedia (Kurti Brand)",
+    initials: "KP"
   },
   {
-    quote: "Incredible attention to detail. The UI animations he implemented made our app feel world-class.",
-    name: "Emily Davis",
-    role: "Product Designer",
-    initials: "ED",
+    quote:
+      "Our streetwear brand gained better visibility and engagement after Rahul optimized our content strategy and reels distribution.",
+    name: "Arjun Kapoor",
+    role: "Founder, Broadstar (Streetwear Brand)",
+    initials: "BS"
   },
+  {
+    quote:
+      "Rahul helped us communicate our eco gardening products better through educational and engaging social media content.",
+    name: "Rakesh Mehta",
+    role: "Founder, Pirul (Gardening Soil Brand)",
+    initials: "PR"
+  },
+  {
+    quote:
+      "Our ethnic fashion brand experienced strong organic growth after Rahul redesigned our Instagram content strategy.",
+    name: "Neha Sharma",
+    role: "Founder, Miramaar (Ethnic Fashion)",
+    initials: "MM"
+  },
+  {
+    quote:
+      "Rahul helped position our beverage brand effectively during the summer campaign through engaging reels and creative storytelling.",
+    name: "Aditya Jain",
+    role: "Founder, Piboca (Beverage Brand)",
+    initials: "PB"
+  },
+  {
+    quote:
+      "Rahul's content planning and reels strategy helped our nightwear brand reach a much wider audience organically.",
+    name: "Priya Verma",
+    role: "Founder, Be You (Nightwear Brand)",
+    initials: "BY"
+  },
+  {
+    quote:
+      "Our fragrance brand's Instagram engagement improved significantly after Rahul refined our storytelling and visual branding.",
+    name: "Nisha Kapoor",
+    role: "Founder, Nook Nosh (Perfume Brand)",
+    initials: "NN"
+  },
+  {
+    quote:
+      "Rahul helped our leather accessories brand grow organically with consistent storytelling and product-focused reels.",
+    name: "Arjun Mehta",
+    role: "Founder, Hum and Hide (Leather Accessories)",
+    initials: "HH"
+  },
+  {
+    quote:
+      "Our sneaker brand saw noticeable improvement in engagement after Rahul optimized our reels strategy and collaborations.",
+    name: "Karan Verma",
+    role: "Founder, ELEPHAWEAR (Sneaker Brand)",
+    initials: "EW"
+  },
+  {
+    quote:
+      "Rahul helped us improve brand visibility through consistent social media campaigns and engaging product storytelling.",
+    name: "Rahul Agarwal",
+    role: "Founder, RR Jewellers (Jewellery Brand)",
+    initials: "RJ"
+  }
 ];
 
 export default function Testimonials() {
+  const controls = useAnimation();
+const scrollRef = useRef<HTMLDivElement>(null)
+
+const scrollLeft = () => {
+scrollRef.current?.scrollBy({
+left: -400,
+behavior: "smooth"
+})
+}
+
+const scrollRight = () => {
+scrollRef.current?.scrollBy({
+left: 400,
+behavior: "smooth"
+})
+}
+
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formState, setFormState] = useState({ name: "", role: "", quote: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  useEffect(() => {
+  controls.start({
+    x: "-50%",
+    transition: {
+      duration: 120,
+      ease: "linear",
+      repeat: Infinity
+    }
+  });
+}, [controls]);
+
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -63,6 +154,9 @@ export default function Testimonials() {
   };
 
   return (
+
+
+    
     <section className="relative z-20 bg-[#0a0a0a] py-32 overflow-hidden" id="testimonials">
       {/* Background Ambience - Different position for variety */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
@@ -77,42 +171,74 @@ export default function Testimonials() {
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight"
             >
-                Kind <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-400">Words</span>
+                D2C Brands <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-400">I've Worked With</span>
             </motion.h2>
             <p className="text-gray-400 text-lg max-w-xl mx-auto mb-10 leading-relaxed">
                 Feedback from clients and collaborators I've had the pleasure of working with.
             </p>
-            
-            <motion.button
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              onClick={() => setIsModalOpen(true)}
-              className="px-6 py-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 text-white transition-all text-sm font-medium backdrop-blur-sm"
-            >
-              Write a Review
-            </motion.button>
+
+
+
+
+
        </div>
 
-      <div className="relative w-full overflow-hidden mask-linear-fade">
+      <div
+className="relative w-full overflow-hidden mask-linear-fade"
+
+
+
+
+onMouseEnter={() => controls.stop()}
+onMouseLeave={() =>
+  controls.start({
+    x: "-50%",
+    transition: {
+      duration: 120,
+      ease: "linear",
+      repeat: Infinity
+    }
+  })
+}
+>
+<div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-6 z-30 pointer-events-none">
+
+<button
+onClick={scrollLeft}
+className="pointer-events-auto p-3 rounded-full bg-black/40 hover:bg-white/20 transition text-white backdrop-blur-md"
+>
+❮
+</button>
+
+<button
+onClick={scrollRight}
+className="pointer-events-auto p-3 rounded-full bg-black/40 hover:bg-white/20 transition text-white backdrop-blur-md"
+>
+❯
+</button>
+
+</div>
+  
          {/* Mask gradient for fade effect on edges */}
          <div className="absolute top-0 left-0 w-32 h-full z-20 bg-linear-to-r from-[#121212] to-transparent" />
          <div className="absolute top-0 right-0 w-32 h-full z-20 bg-linear-to-l from-[#121212] to-transparent" />
 
-        <div className="flex w-max">
-          <motion.div
-            className="flex gap-8 px-4"
-            animate={{ x: "-50%" }}
-            transition={{
-              duration: 30,
-              ease: "linear",
-              repeat: Infinity,
-            }}
-          >
-            {[...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS].map((item, index) => (
+   <div
+ref={scrollRef}
+className="flex flex-col gap-8 overflow-hidden"
+>
+
+
+  <motion.div
+className="flex gap-8 px-4 w-max"
+animate={controls}
+>
+            
+          {[...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS].map((item, index) => (
+              
               <div
                 key={index}
-                className="w-[350px] md:w-[450px] p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm shrink-0"
+                className="w-[350px] md:w-[450px] shrink-0 p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:scale-[1.03] transition-transform duration-300"
               >
                  <div className="flex items-start gap-4 mb-6">
                     <div className="w-12 h-12 rounded-full bg-linear-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold text-lg">
@@ -129,6 +255,8 @@ export default function Testimonials() {
               </div>
             ))}
           </motion.div>
+          
+
         </div>
       </div>
 

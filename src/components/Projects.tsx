@@ -5,78 +5,56 @@ import { useState } from "react";
 
 // Project Data with Media & Layout Configuration
 const projects = [
+ {
+  id: "metaninza-growth",
+  title: "MetaNinza Social Media Growth",
+  category: "Social Media Strategy • Gaming Community",
+  description: "Scaled MetaNinza's gaming community using trend-driven reels and engagement strategies.",
+  longDescription: "Built and managed MetaNinza’s social media ecosystem from early stage. Focused on gaming trends, memes, reels strategy, and community engagement to grow reach and build an active audience.",
+  techStack: ["Instagram Growth", "Reels Strategy", "Community Engagement", "Content Calendar"],
+  repo: "#",
+  demo: "https://instagram.com/metaninza",
+  color: "from-blue-600/20 to-cyan-500/20",
+  hoverColor: "group-hover:from-blue-600/40 group-hover:to-cyan-500/40",
+  span: "md:col-span-2 md:row-span-2",
+  mediaType: "image",
+  mediaUrl: "/projects/unnamed.png",
+  demoUrl: "/projects/metaninza-logo.png"
+},
+
   {
-    id: "elite-hotel",
-    title: "Elite Hotel",
-    category: "Full Stack • Microservices",
-    description: "Scalable hotel management system with 5+ Node.js services.",
-    longDescription: "A comprehensive Microservices-based Hotel Management System designed to streamline reservations, billing, and housekeeping. Built with a focus on scalability and service isolation.",
-    techStack: ["Node.js", "Docker", "Kubernetes", "Redis", "RabbitMQ", "Next.js"],
-    repo: "https://github.com/fawazv/Elite-hotel",
-    demo: "#",
-    color: "from-blue-600/20 to-cyan-500/20",
-    hoverColor: "group-hover:from-blue-600/40 group-hover:to-cyan-500/40",
-    span: "md:col-span-2 md:row-span-2",
-    mediaType: "image",
-    // Abstract Network/Server for Grid
-    mediaUrl: "https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    // Code/Structure Demo for Modal
-    demoUrl: "https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-  },
+  id: "rooter-community",
+  title: "Rooter Community Growth",
+  category: "Esports • Community Management",
+  description: "Managed social media campaigns and community engagement for India's largest gaming platform.",
+  longDescription: "Worked on content planning, trend research, and engagement strategies to grow Rooter’s gaming community across multiple social platforms.",
+  techStack: ["Community Engagement", "Content Strategy", "Gaming Trends", "Analytics"],
+  repo: "#",
+  demo: "https://www.instagram.com/rooter.gg/",
+  color: "from-purple-600/20 to-pink-500/20",
+  hoverColor: "group-hover:from-purple-600/40 group-hover:to-pink-500/40",
+  span: "md:col-span-1 md:row-span-1",
+  mediaType: "image",
+  mediaUrl: "/projects/rooter-mainn-logo.png",
+  demoUrl: "/projects/rooter-logo.png"
+},
   {
-    id: "nxtcart",
-    title: "Nxtcart",
-    category: "E-Commerce",
-    description: "Modern shopping platform with automated workflows.",
-    longDescription: "A modern e-commerce application featuring secure authentication, payment processing with Stripe/PayPal, and a robust admin dashboard for product management.",
-    techStack: ["Next.js", "TypeScript", "Stripe", "MongoDB", "Shadcn UI"],
-    repo: "https://github.com/fawazv/nxt-cart",
-    demo: "#",
-    color: "from-purple-600/20 to-pink-500/20",
-    hoverColor: "group-hover:from-purple-600/40 group-hover:to-pink-500/40",
-    span: "md:col-span-1 md:row-span-2",
-    mediaType: "image",
-    // Shopping/Ecommerce Concept
-    mediaUrl: "https://images.pexels.com/photos/34577/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    // Shopping Interaction
-    demoUrl: "https://images.pexels.com/photos/5632402/pexels-photo-5632402.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-  },
-  {
-    id: "dropbox-clone",
-    title: "Dropbox Clone",
-    category: "Cloud Storage",
-    description: "Secure file storage with drag-and-drop & metadata.",
-    longDescription: "A functional clone of Dropbox allowing users to upload, organize, and manage files in the cloud. Features real-time updates and secure authentication.",
-    techStack: ["React", "Firebase", "Tailwind CSS"],
-    repo: "https://github.com/fawazv/dropbox-clone",
-    demo: "#",
-    color: "from-orange-500/20 to-red-500/20",
-    hoverColor: "group-hover:from-orange-500/40 group-hover:to-red-500/40",
-    span: "md:col-span-1 md:row-span-1",
-    mediaType: "image",
-    // Cloud/Data Abstract
-    mediaUrl: "https://images.pexels.com/photos/1148820/pexels-photo-1148820.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    // File Management
-    demoUrl: "https://images.pexels.com/photos/3760067/pexels-photo-3760067.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-  },
-  {
-    id: "blog-microservices",
-    title: "Blog Platform",
-    category: "Microservices",
-    description: "Event-driven architecture with RabbitMQ.",
-    longDescription: "Built User, Post, and Comment services with API Gateway and RabbitMQ communication. Containerized with Docker Compose and automated pipeline via GitHub Actions.",
-    techStack: ["Node.js", "RabbitMQ", "Docker"],
-    repo: "https://github.com/fawazv/blog-microservice",
-    demo: "#",
-    color: "from-green-600/20 to-teal-500/20",
-    hoverColor: "group-hover:from-green-600/40 group-hover:to-teal-500/40",
-    span: "md:col-span-1 md:row-span-1",
-    mediaType: "image",
-    // Typing/Code Abstract
-    mediaUrl: "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    // Server/Terminal
-    demoUrl: "https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-  },
+  id: "d2c-brand-growth",
+  title: "D2C Brand Social Media Growth",
+  category: "D2C • Content Strategy",
+  description: "Helped 20+ D2C brands scale through viral reels and influencer collaborations.",
+  longDescription: "Worked with multiple D2C brands to improve reach, engagement, and brand awareness using social media campaigns, influencer marketing, and viral content strategies.",
+  techStack: ["Influencer Marketing", "Content Creation", "Campaign Strategy", "Analytics"],
+  repo: "#",
+  demo: "#",
+  color: "from-green-600/20 to-emerald-500/20",
+  hoverColor: "group-hover:from-green-600/40 group-hover:to-emerald-500/40",
+  span: "md:col-span-1 md:row-span-1",
+  mediaType: "image",
+  mediaUrl: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg",
+  demoUrl: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg"
+},
+  /*
   {
     id: "bookstore-app",
     title: "Bookstore",
@@ -95,6 +73,7 @@ const projects = [
     // Library/Shelf
     demoUrl: "https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   },
+  
   {
     id: "pixabay-gallery",
     title: "Pixabay Gallery",
@@ -113,6 +92,7 @@ const projects = [
     // Searching/Scanning
     demoUrl: "https://images.pexels.com/photos/276452/pexels-photo-276452.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   },
+  
   {
     id: "room-upload",
     title: "Room Upload",
@@ -131,6 +111,7 @@ const projects = [
     // Upload/Processing
     demoUrl: "https://images.pexels.com/photos/443383/pexels-photo-443383.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   },
+  */
 ];
 
 const INITIAL_VISIBLE_COUNT = 5;
@@ -159,11 +140,10 @@ export default function Projects() {
            className="mb-16"
         >
           <h2 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
-            Selected <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-400">Works</span>
+            Growth Case <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-400">Studies</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl leading-relaxed">
-             A curated selection of projects demonstrating full-stack capabilities, 
-             microservices architecture, and modern interface design.
+            Proven social media growth campaigns, community building strategies, and brand scaling projects.
           </p>
         </motion.div>
 
@@ -187,17 +167,17 @@ export default function Projects() {
                         whileHover={{ scale: 1.015 }}
                     >
                         {/* Media Background - Always 'mediaUrl' for Grid */}
-                        <img 
-                            src={project.mediaUrl}
-                            alt={project.title}
-                            className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-all duration-700 group-hover:scale-110"
-                        />
+                       <img
+  src={project.mediaUrl}
+  alt={project.title}
+  className="absolute inset-0 w-full h-full object-cover opacity-90 transition-all duration-700"
+ />
 
                         {/* Gradient Overlay */}
                         <div className={`absolute inset-0 bg-linear-to-br ${project.color} ${project.hoverColor} transition-all duration-500 opacity-60 group-hover:opacity-80 mix-blend-overlay`} />
                         
                         {/* Darkener */}
-                        <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-all duration-500" />
 
                         {/* Noise */}
                         <div className="absolute inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
@@ -300,7 +280,7 @@ export default function Projects() {
                                     <img 
                                         src={selectedProject.demoUrl || selectedProject.mediaUrl}
                                         alt={selectedProject.title}
-                                        className="absolute inset-0 w-full h-full object-cover opacity-80" 
+                                        className="w-full h-[60%] object-contain mx-auto opacity-80"
                                     />
                                    <div className={`absolute inset-0 bg-linear-to-b ${selectedProject.color} mix-blend-overlay opacity-80`} />
                                    <div className="absolute inset-0 bg-black/20" />
@@ -353,24 +333,15 @@ export default function Projects() {
                                         </div>
 
                                         <div className="flex gap-4 pt-4 border-t border-white/10">
-                                            <a 
-                                                href={selectedProject.repo} 
-                                                target="_blank" 
-                                                rel="noopener noreferrer" 
-                                                className="flex-1 py-4 rounded-xl bg-white text-black font-bold text-center hover:bg-gray-200 transition-colors flex items-center justify-center gap-2"
-                                            >
-                                                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                                                View Code
-                                            </a>
-                                            <a 
-                                                href={selectedProject.demo} 
-                                                target="_blank" 
-                                                rel="noopener noreferrer" 
-                                                className="flex-1 py-4 rounded-xl bg-white/5 text-white font-bold text-center hover:bg-white/10 transition-colors border border-white/10 flex items-center justify-center gap-2"
-                                            >
-                                                Live Demo
-                                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
-                                            </a>
+                                           <a
+  href={selectedProject.demo}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium text-white bg-gradient-to-r from-pink-500 via-purple-500 to-orange-400 hover:scale-105 transition transform"
+>
+  View Instagram Page
+</a>
+                                            
                                         </div>
                                     </motion.div>
                                 </div>

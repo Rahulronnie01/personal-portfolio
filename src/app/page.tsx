@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import TrustedBrands from "@/components/TrustedBrands";
 import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
 import Timeline from "@/components/Timeline";
@@ -13,6 +14,7 @@ export default function Home() {
       <Hero />
       <Projects />
       <Testimonials />
+<TrustedBrands />
       <Blog />
       <Skills />
       <Timeline />

@@ -21,8 +21,8 @@ export default function Overlay({ scrollYProgress }: { scrollYProgress: any }) {
             className="absolute inset-0 flex items-center justify-center p-8"
         >
             <div className="text-center">
-                <h1 className="text-6xl md:text-8xl font-bold tracking-tight mb-4">Mohammed Fawaz.</h1>
-                <p className="text-xl md:text-2xl font-light text-gray-300">Full Stack Developer.</p>
+                <h1 className="text-6xl md:text-8xl font-bold tracking-tight mb-4">Rahul Kumar.</h1>
+                <p className="text-xl md:text-2xl font-light text-gray-300">Social Media Manager & Growth Strategist.</p>
             </div>
         </motion.div>
 
@@ -32,7 +32,7 @@ export default function Overlay({ scrollYProgress }: { scrollYProgress: any }) {
             className="absolute inset-0 flex items-center justify-start p-8 md:p-24"
         >
             <div className="max-w-2xl">
-                <h2 className="text-5xl md:text-7xl font-bold leading-tight">Building scalable <br/><span className="text-blue-500">microservices</span> & web apps.</h2>
+                <h2 className="text-5xl md:text-7xl font-bold leading-tight">Building high-growth <br/><span className="text-blue-500">Social Media</span> ecosystems.</h2>
             </div>
         </motion.div>
 
@@ -42,7 +42,7 @@ export default function Overlay({ scrollYProgress }: { scrollYProgress: any }) {
             className="absolute inset-0 flex items-center justify-end p-8 md:p-24 text-right"
         >
             <div className="max-w-2xl">
-                <h2 className="text-5xl md:text-7xl font-bold leading-tight">Expertise in Next.js, <br/><span className="text-purple-500">Node.js</span> & Cloud.</h2>
+                <h2 className="text-5xl md:text-7xl font-bold leading-tight">Scaling brands with, <br/><span className="text-purple-500">content, community</span>  & analytics.</h2>
             </div>
         </motion.div>
     </div>

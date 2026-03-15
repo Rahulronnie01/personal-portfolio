@@ -1,45 +1,20 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { InstagramIcon } from "lucide-react";
 import { useState } from "react";
 
 export default function Contact() {
+
+  
   const [formState, setFormState] = useState({
     name: "",
     email: "",
     message: "",
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    try {
-      const response = await fetch('/api/send-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formState),
-      });
 
-      if (!response.ok) {
-        throw new Error('Failed to send message');
-      }
-
-      setIsSuccess(true);
-      setFormState({ name: "", email: "", message: "" });
-      setTimeout(() => setIsSuccess(false), 3000);
-    } catch (error) {
-      console.error('Error sending message:', error);
-      alert('Failed to send message. Please try again later.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
+ 
   return (
     <section className="relative z-20 bg-[#0a0a0a] py-32 px-4 md:px-12 overflow-hidden" id="contact">
       {/* Background Gradients */}
@@ -58,33 +33,35 @@ export default function Contact() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-5xl md:text-7xl font-bold mb-6 text-white tracking-tight">
-              Let's work <br />
+              Let's grow <br />
               <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-500">
-                together.
+                your brand.
               </span>
             </h2>
             <p className="text-gray-400 text-lg mb-10 max-w-md leading-relaxed">
-              I'm currently available for freelance projects and open to full-time opportunities.
-              If you have a project that needs some creative touch, I'd love to hear about it.
+              Looking to grow your brand through high-performing social media content?
+I help companies scale their reach, engagement and community using
+data-driven strategies, viral storytelling and performance-focused campaigns.
+Let's build something impactful together.
             </p>
 
             <div className="flex flex-col gap-6 mb-12">
-              <a href="mailto:fawazv.business@gmail.com" className="flex items-center gap-4 text-gray-300 hover:text-white transition-colors group">
+              <a href="mailto:rahulsinghgaming@gmail.com" className="flex items-center gap-4 text-gray-300 hover:text-white transition-colors group">
                 <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 transition-colors">
                   <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                 </div>
-                <span className="text-lg">fawazv.business@gmail.com</span>
+                <span className="text-lg">rahulsinghgaming@gmail.com</span>
               </a>
               
               <div className="flex items-center gap-4">
-                 <SocialLink href="https://github.com/fawaz-v" icon={<GithubIcon />} label="GitHub" />
-                 <SocialLink href="https://linkedin.com/in/" icon={<LinkedinIcon />} label="LinkedIn" />
-                 <SocialLink href="https://twitter.com/" icon={<TwitterIcon />} label="Twitter" />
+                 
+                 <SocialLink href="https://www.linkedin.com/in/rahulsmm/" icon={<LinkedinIcon />} label="LinkedIn" />
+                 <SocialLink href="https://www.instagram.com/gw_ronnie/" icon={<InstagramIcon />} label="Instagram" />
               </div>
             </div>
 
             <a 
-              href="/resume.pdf" 
+              href="https://drive.google.com/uc?export=download&id=1Yqgu2QLdVzXBRmOvXy1rkuH3wEgEgSdP"
               download 
               className="inline-flex items-center gap-2 px-8 py-4 bg-white text-black rounded-full font-bold hover:bg-gray-200 transition-colors transform hover:-translate-y-1"
             >
@@ -100,66 +77,66 @@ export default function Contact() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="bg-white/5 border border-white/10 rounded-3xl p-8 md:p-10 backdrop-blur-sm"
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
+<form
+  action="https://formspree.io/f/mjgaeqqk"
+  method="POST"
+  className="space-y-6"
+>
+  <input type="hidden" name="_next" value="http://localhost:3000/#contact" />
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-2">Name</label>
                 <input
-                  type="text"
-                  id="name"
-                  value={formState.name}
-                  onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+  type="text"
+  id="name"
+  name="name"
+  value={formState.name}
+  onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+
+                  
                   className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-hidden focus:border-blue-500 transition-colors"
-                  placeholder="John Doe"
+                  placeholder="Pushpa Raj"
                   required
                 />
               </div>
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-2">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  value={formState.email}
-                  onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+  <input
+  type="email"
+  id="email"
+  name="email"
+  value={formState.email}
+  onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                   className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-hidden focus:border-blue-500 transition-colors"
-                  placeholder="john@example.com"
+                  placeholder="Pushpa@example.com"
                   required
                 />
               </div>
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-400 mb-2">Message</label>
-                <textarea
-                  id="message"
-                  value={formState.message}
-                  onChange={(e) => setFormState({ ...formState, message: e.target.value })}
+  <textarea
+  id="message"
+  name="message"
+  value={formState.message}
+  onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                   rows={4}
                   className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-hidden focus:border-blue-500 transition-colors resize-none"
-                  placeholder="Tell me about your project..."
+                  placeholder="Describe your brand, target audience, and growth goals."
                   required
                 />
               </div>
 
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full py-4 bg-linear-to-r from-blue-600 to-purple-600 rounded-xl text-white font-bold hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center justify-center gap-2"
-              >
-                {isSubmitting ? (
-                  <>
-                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    Sending...
-                  </>
-                ) : isSuccess ? (
-                  "Message Sent!"
-                ) : (
-                  "Send Message"
-                )}
-              </button>
+             <button
+  type="submit"
+  className="w-full py-4 bg-linear-to-r from-blue-600 to-purple-600 rounded-xl text-white font-bold hover:opacity-90 transition-opacity flex items-center justify-center"
+>
+  Send Message
+</button>
             </form>
           </motion.div>
         </div>
 
         <footer className="mt-24 pt-8 border-t border-white/5 text-center text-gray-500 font-mono text-sm">
-           <p>&copy; {new Date().getFullYear()} Mohammed Fawaz. All rights reserved.</p>
+           <p>&copy; {new Date().getFullYear()} Rahul Kumar. All rights reserved.</p>
         </footer>
       </div>
     </section>
