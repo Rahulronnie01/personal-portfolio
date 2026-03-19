@@ -1,8 +1,10 @@
 "use client";
 
-import { motion, AnimatePresence, useAnimation } from "framer-motion";
-import { useState, useEffect } from "react";
-import { useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useCallback, useEffect } from "react";
+import useEmblaCarousel from 'embla-carousel-react';
+import AutoScroll from 'embla-carousel-auto-scroll';
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const TESTIMONIALS = [
   {
@@ -92,38 +94,39 @@ const TESTIMONIALS = [
 ];
 
 export default function Testimonials() {
-  const controls = useAnimation();
-const scrollRef = useRef<HTMLDivElement>(null)
-
-const scrollLeft = () => {
-scrollRef.current?.scrollBy({
-left: -400,
-behavior: "smooth"
-})
-}
-
-const scrollRight = () => {
-scrollRef.current?.scrollBy({
-left: 400,
-behavior: "smooth"
-})
-}
-
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formState, setFormState] = useState({ name: "", role: "", quote: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   
-  useEffect(() => {
-  controls.start({
-    x: "-50%",
-    transition: {
-      duration: 120,
-      ease: "linear",
-      repeat: Infinity
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    loop: true, 
+    dragFree: true,
+    align: "start"
+  }, [
+    AutoScroll({ playOnInit: true, speed: 1.5, stopOnInteraction: false, stopOnMouseEnter: true })
+  ]);
+
+  const scrollLeft = useCallback(() => {
+    if (!emblaApi) return;
+    const autoScroll = emblaApi.plugins().autoScroll;
+    if (autoScroll) {
+      autoScroll.reset();
+      autoScroll.stop();
     }
-  });
-}, [controls]);
+    emblaApi.scrollPrev();
+    if (autoScroll) autoScroll.play();
+  }, [emblaApi]);
+
+  const scrollRight = useCallback(() => {
+    if (!emblaApi) return;
+    const autoScroll = emblaApi.plugins().autoScroll;
+    if (autoScroll) {
+      autoScroll.reset();
+      autoScroll.stop();
+    }
+    emblaApi.scrollNext();
+    if (autoScroll) autoScroll.play();
+  }, [emblaApi]);
 
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
 
@@ -157,7 +160,7 @@ behavior: "smooth"
 
 
     
-    <section className="relative z-20 bg-[#0a0a0a] py-32 overflow-hidden" id="testimonials">
+    <section className="relative z-20 bg-[#0a0a0a] py-20 md:py-32 overflow-hidden" id="testimonials">
       {/* Background Ambience - Different position for variety */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
          <div className="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-[120px]" />
@@ -183,81 +186,48 @@ behavior: "smooth"
 
        </div>
 
-      <div
-className="relative w-full overflow-hidden mask-linear-fade"
-
-
-
-
-onMouseEnter={() => controls.stop()}
-onMouseLeave={() =>
-  controls.start({
-    x: "-50%",
-    transition: {
-      duration: 120,
-      ease: "linear",
-      repeat: Infinity
-    }
-  })
-}
->
-<div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-6 z-30 pointer-events-none">
-
-<button
-onClick={scrollLeft}
-className="pointer-events-auto p-3 rounded-full bg-black/40 hover:bg-white/20 transition text-white backdrop-blur-md"
->
-❮
-</button>
-
-<button
-onClick={scrollRight}
-className="pointer-events-auto p-3 rounded-full bg-black/40 hover:bg-white/20 transition text-white backdrop-blur-md"
->
-❯
-</button>
-
-</div>
+      <div className="relative w-full overflow-hidden mask-linear-fade select-none py-4">
+         <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-4 md:px-12 z-30 pointer-events-none">
+            <button
+               onClick={scrollLeft}
+               className="pointer-events-auto p-3 md:p-4 rounded-full bg-[#121212]/80 hover:bg-blue-600 border border-white/10 hover:border-blue-400 hover:scale-110 transition-all duration-300 text-white backdrop-blur-xl shadow-[0_0_20px_rgba(0,0,0,0.5)] group"
+            >
+               <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-gray-400 group-hover:text-white transition-colors" />
+            </button>
+            <button
+               onClick={scrollRight}
+               className="pointer-events-auto p-3 md:p-4 rounded-full bg-[#121212]/80 hover:bg-blue-600 border border-white/10 hover:border-blue-400 hover:scale-110 transition-all duration-300 text-white backdrop-blur-xl shadow-[0_0_20px_rgba(0,0,0,0.5)] group"
+            >
+               <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-gray-400 group-hover:text-white transition-colors" />
+            </button>
+         </div>
   
          {/* Mask gradient for fade effect on edges */}
-         <div className="absolute top-0 left-0 w-32 h-full z-20 bg-linear-to-r from-[#121212] to-transparent" />
-         <div className="absolute top-0 right-0 w-32 h-full z-20 bg-linear-to-l from-[#121212] to-transparent" />
+         <div className="absolute top-0 left-0 w-32 h-full z-20 bg-linear-to-r from-[#0a0a0a] to-transparent pointer-events-none" />
+         <div className="absolute top-0 right-0 w-32 h-full z-20 bg-linear-to-l from-[#0a0a0a] to-transparent pointer-events-none" />
 
-   <div
-ref={scrollRef}
-className="flex flex-col gap-8 overflow-hidden"
->
-
-
-  <motion.div
-className="flex gap-8 px-4 w-max"
-animate={controls}
->
-            
-          {[...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS].map((item, index) => (
-              
-              <div
-                key={index}
-                className="w-[350px] md:w-[450px] shrink-0 p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:scale-[1.03] transition-transform duration-300"
-              >
-                 <div className="flex items-start gap-4 mb-6">
-                    <div className="w-12 h-12 rounded-full bg-linear-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold text-lg">
-                        {item.initials}
-                    </div>
-                    <div>
-                        <h4 className="text-white font-bold text-lg">{item.name}</h4>
-                        <p className="text-sm text-gray-400">{item.role}</p>
-                    </div>
-                 </div>
-                 <p className="text-gray-300 italic leading-relaxed">
-                    "{item.quote}"
-                 </p>
-              </div>
-            ))}
-          </motion.div>
-          
-
-        </div>
+         <div className="overflow-hidden" ref={emblaRef}>
+            <div className="flex touch-pan-y items-stretch py-10" style={{ backfaceVisibility: 'hidden' }}>
+               {TESTIMONIALS.map((item, index) => (
+                  <div key={index} className="flex-[0_0_auto] min-w-0 pl-8 h-auto">
+                     <div className="w-[350px] md:w-[450px] h-full p-8 rounded-2xl bg-[#121212] border border-white/5 hover:border-white/20 transition-all duration-500 shadow-xl cursor-grab active:cursor-grabbing flex flex-col justify-between">
+                        <div className="flex items-start gap-4 mb-6">
+                           <div className="w-12 h-12 rounded-full bg-linear-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold text-lg shadow-lg shrink-0">
+                              {item.initials}
+                           </div>
+                           <div className="overflow-hidden">
+                              <h4 className="text-white font-bold text-lg leading-tight truncate">{item.name}</h4>
+                              <p className="text-sm text-blue-400/80 font-medium mt-1 truncate">{item.role}</p>
+                           </div>
+                        </div>
+                        <p className="text-gray-300/90 italic leading-relaxed text-[15px] mt-auto">
+                           "{item.quote}"
+                        </p>
+                     </div>
+                  </div>
+               ))}
+            </div>
+         </div>
       </div>
 
       <AnimatePresence>

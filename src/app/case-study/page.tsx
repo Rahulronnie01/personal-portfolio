@@ -191,7 +191,7 @@ export default function CaseStudy() {
           </p>
 
           <a
-            href="#contact"
+            href="#Contact.tsx"
             className="bg-blue-500 hover:bg-blue-600 px-10 py-5 rounded-xl text-lg font-semibold transition"
           >
             Start Your Growth Campaign

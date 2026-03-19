@@ -11,6 +11,10 @@
   "dependencies": {
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.5.0",
+    "@splidejs/react-splide": "^0.7.12",
+    "@splidejs/splide-extension-auto-scroll": "^0.5.3",
+    "embla-carousel-auto-scroll": "^8.6.0",
+    "embla-carousel-react": "^8.6.0",
     "ffmpeg": "^0.0.4",
     "framer-motion": "^12.26.2",
     "googleapis": "^171.4.0",
@@ -20,6 +24,7 @@
     "nodemailer": "^7.0.12",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "react-fast-marquee": "^1.6.5",
     "three": "^0.182.0"
   },
   "devDependencies": {

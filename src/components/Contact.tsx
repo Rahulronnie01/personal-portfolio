@@ -16,7 +16,7 @@ export default function Contact() {
 
  
   return (
-    <section className="relative z-20 bg-[#0a0a0a] py-32 px-4 md:px-12 overflow-hidden" id="contact">
+    <section className="relative z-20 bg-[#0a0a0a] py-20 md:py-32 px-4 md:px-12 overflow-hidden" id="contact">
       {/* Background Gradients */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-purple-900/10 rounded-full blur-[120px]" />
@@ -96,6 +96,7 @@ Let's build something impactful together.
                   className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-hidden focus:border-blue-500 transition-colors"
                   placeholder="Pushpa Raj"
                   required
+                  suppressHydrationWarning
                 />
               </div>
               <div>
@@ -109,6 +110,7 @@ Let's build something impactful together.
                   className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-hidden focus:border-blue-500 transition-colors"
                   placeholder="Pushpa@example.com"
                   required
+                  suppressHydrationWarning
                 />
               </div>
               <div>
@@ -122,6 +124,7 @@ Let's build something impactful together.
                   className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-hidden focus:border-blue-500 transition-colors resize-none"
                   placeholder="Describe your brand, target audience, and growth goals."
                   required
+                  suppressHydrationWarning
                 />
               </div>
 

@@ -125,7 +125,7 @@ export default function Projects() {
   const hasMore = visibleCount < projects.length;
 
   return (
-    <section className="relative z-20 bg-[#0a0a0a] min-h-screen py-32 px-4 md:px-12 overflow-hidden" id="projects">
+    <section className="relative z-20 bg-[#0a0a0a] min-h-screen py-20 md:py-32 px-4 md:px-12 overflow-hidden" id="projects">
       {/* Background Ambience */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-[120px]" />
@@ -174,17 +174,17 @@ export default function Projects() {
  />
 
                         {/* Gradient Overlay */}
-                        <div className={`absolute inset-0 bg-linear-to-br ${project.color} ${project.hoverColor} transition-all duration-500 opacity-60 group-hover:opacity-80 mix-blend-overlay`} />
+                        <div className={`absolute inset-0 bg-linear-to-br ${project.color} ${project.hoverColor} transition-all duration-500 opacity-40 group-hover:opacity-60 mix-blend-color`} />
                         
                         {/* Darkener */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-all duration-500" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent opacity-90 transition-all duration-500" />
 
                         {/* Noise */}
                         <div className="absolute inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
 
-                        <div className="absolute inset-0 p-8 flex flex-col justify-between z-10">
+                        <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-between z-10">
                             <div className="flex justify-between items-start">
-                                 <span className="inline-block px-3 py-1 rounded-full bg-black/40 border border-white/10 text-xs font-mono text-blue-300 backdrop-blur-md">
+                                 <span className="inline-block px-3 py-1.5 rounded-full bg-black/60 border border-white/20 text-[11px] md:text-xs font-mono text-blue-200 backdrop-blur-md shadow-lg">
                                     {project.category}
                                  </span>
                                  <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
