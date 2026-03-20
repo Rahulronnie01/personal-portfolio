@@ -1,7 +1,8 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Image from "next/image";
 
 // Project Data with Media & Layout Configuration
 const projects = [
@@ -120,6 +121,17 @@ export default function Projects() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_COUNT);
 
+  useEffect(() => {
+    if (selectedId) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto"; // or "" empty string to remove inline style
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [selectedId]);
+
   const selectedProject = projects.find((p) => p.id === selectedId);
   const visibleProjects = projects.slice(0, visibleCount);
   const hasMore = visibleCount < projects.length;
@@ -158,18 +170,29 @@ export default function Projects() {
                         key={project.id}
                         layoutId={project.id}
                         onClick={() => setSelectedId(project.id)}
+                        onKeyDown={(e) => {
+                           if (e.key === "Enter" || e.key === " ") {
+                             e.preventDefault();
+                             setSelectedId(project.id);
+                           }
+                        }}
+                        tabIndex={0}
+                        role="button"
+                        aria-label={`View ${project.title}`}
                         initial={{ opacity: 0, y: 20, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.9 }}
                         transition={{ duration: 0.3 }}
                         viewport={{ once: true }}
+                        style={{ willChange: "transform, opacity" }}
                         className={`group relative rounded-3xl overflow-hidden cursor-pointer border border-white/10 bg-white/5 backdrop-blur-md ${project.span}`}
                         whileHover={{ scale: 1.015 }}
                     >
                         {/* Media Background - Always 'mediaUrl' for Grid */}
-                       <img
+                       <Image
   src={project.mediaUrl}
   alt={project.title}
+  fill
   className="absolute inset-0 w-full h-full object-cover opacity-90 transition-all duration-700"
  />
 
@@ -277,11 +300,14 @@ export default function Projects() {
                            <div className="flex flex-col md:flex-row h-full">
                                 { /* Visual Side - Prioritize 'demoUrl', fallback to 'mediaUrl' */ }
                                 <div className={`w-full md:w-2/5 min-h-[300px] relative overflow-hidden flex flex-col justify-end p-8`}>
-                                    <img 
-                                        src={selectedProject.demoUrl || selectedProject.mediaUrl}
-                                        alt={selectedProject.title}
-                                        className="w-full h-[60%] object-contain mx-auto opacity-80"
-                                    />
+                                    <div className="relative w-full h-[60%] mx-auto opacity-80">
+                                      <Image 
+                                          src={selectedProject.demoUrl || selectedProject.mediaUrl}
+                                          alt={selectedProject.title}
+                                          fill
+                                          className="object-contain"
+                                      />
+                                    </div>
                                    <div className={`absolute inset-0 bg-linear-to-b ${selectedProject.color} mix-blend-overlay opacity-80`} />
                                    <div className="absolute inset-0 bg-black/20" />
                                    

@@ -1,9 +1,11 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useCallback, useEffect } from "react";
-import useEmblaCarousel from 'embla-carousel-react';
-import AutoScroll from 'embla-carousel-auto-scroll';
+import { useState, useRef } from "react";
+// @ts-ignore
+import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
+import { AutoScroll } from '@splidejs/splide-extension-auto-scroll';
+import '@splidejs/react-splide/css/core';
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const TESTIMONIALS = [
@@ -97,36 +99,19 @@ export default function Testimonials() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formState, setFormState] = useState({ name: "", role: "", quote: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
-  const [emblaRef, emblaApi] = useEmblaCarousel({ 
-    loop: true, 
-    dragFree: true,
-    align: "start"
-  }, [
-    AutoScroll({ playOnInit: true, speed: 1.5, stopOnInteraction: false, stopOnMouseEnter: true })
-  ]);
+  const splideRef = useRef<any>(null);
 
-  const scrollLeft = useCallback(() => {
-    if (!emblaApi) return;
-    const autoScroll = emblaApi.plugins().autoScroll;
-    if (autoScroll) {
-      autoScroll.reset();
-      autoScroll.stop();
+  const scrollLeft = () => {
+    if (splideRef.current) {
+      splideRef.current.splide.go("<");
     }
-    emblaApi.scrollPrev();
-    if (autoScroll) autoScroll.play();
-  }, [emblaApi]);
+  };
 
-  const scrollRight = useCallback(() => {
-    if (!emblaApi) return;
-    const autoScroll = emblaApi.plugins().autoScroll;
-    if (autoScroll) {
-      autoScroll.reset();
-      autoScroll.stop();
+  const scrollRight = () => {
+    if (splideRef.current) {
+      splideRef.current.splide.go(">");
     }
-    emblaApi.scrollNext();
-    if (autoScroll) autoScroll.play();
-  }, [emblaApi]);
+  };
 
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
 
@@ -187,29 +172,49 @@ export default function Testimonials() {
        </div>
 
       <div className="relative w-full overflow-hidden mask-linear-fade select-none py-4">
-         <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-4 md:px-12 z-30 pointer-events-none">
-            <button
-               onClick={scrollLeft}
-               className="pointer-events-auto p-3 md:p-4 rounded-full bg-[#121212]/80 hover:bg-blue-600 border border-white/10 hover:border-blue-400 hover:scale-110 transition-all duration-300 text-white backdrop-blur-xl shadow-[0_0_20px_rgba(0,0,0,0.5)] group"
-            >
-               <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-gray-400 group-hover:text-white transition-colors" />
-            </button>
-            <button
-               onClick={scrollRight}
-               className="pointer-events-auto p-3 md:p-4 rounded-full bg-[#121212]/80 hover:bg-blue-600 border border-white/10 hover:border-blue-400 hover:scale-110 transition-all duration-300 text-white backdrop-blur-xl shadow-[0_0_20px_rgba(0,0,0,0.5)] group"
-            >
-               <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-gray-400 group-hover:text-white transition-colors" />
-            </button>
-         </div>
-  
          {/* Mask gradient for fade effect on edges */}
          <div className="absolute top-0 left-0 w-32 h-full z-20 bg-linear-to-r from-[#0a0a0a] to-transparent pointer-events-none" />
          <div className="absolute top-0 right-0 w-32 h-full z-20 bg-linear-to-l from-[#0a0a0a] to-transparent pointer-events-none" />
 
-         <div className="overflow-hidden" ref={emblaRef}>
-            <div className="flex touch-pan-y items-stretch py-10" style={{ backfaceVisibility: 'hidden' }}>
+         <Splide
+            ref={splideRef}
+            hasTrack={false}
+            options={{
+               type: 'loop',
+               drag: 'free',
+               autoWidth: true,
+               gap: '2rem',
+               arrows: false,
+               pagination: false,
+               friction: 0.8,
+               autoScroll: {
+                 speed: 1,
+                 pauseOnHover: true,
+                 pauseOnFocus: false,
+               },
+            }}
+            extensions={{ AutoScroll }}
+         >
+            <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-4 md:px-12 z-30 pointer-events-none">
+               <button
+                  onClick={scrollLeft}
+                  aria-label="Scroll testimonials left"
+                  className="pointer-events-auto p-3 md:p-4 rounded-full bg-[#121212]/80 hover:bg-blue-600 border border-white/10 hover:border-blue-400 hover:scale-110 transition-all duration-300 text-white backdrop-blur-xl shadow-[0_0_20px_rgba(0,0,0,0.5)] group"
+               >
+                  <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-gray-400 group-hover:text-white transition-colors" />
+               </button>
+               <button
+                  onClick={scrollRight}
+                  aria-label="Scroll testimonials right"
+                  className="pointer-events-auto p-3 md:p-4 rounded-full bg-[#121212]/80 hover:bg-blue-600 border border-white/10 hover:border-blue-400 hover:scale-110 transition-all duration-300 text-white backdrop-blur-xl shadow-[0_0_20px_rgba(0,0,0,0.5)] group"
+               >
+                  <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-gray-400 group-hover:text-white transition-colors" />
+               </button>
+            </div>
+
+            <SplideTrack className="py-10 flex">
                {TESTIMONIALS.map((item, index) => (
-                  <div key={index} className="flex-[0_0_auto] min-w-0 pl-8 h-auto">
+                  <SplideSlide key={index} className="flex-[0_0_auto] min-w-0 h-auto">
                      <div className="w-[350px] md:w-[450px] h-full p-8 rounded-2xl bg-[#121212] border border-white/5 hover:border-white/20 transition-all duration-500 shadow-xl cursor-grab active:cursor-grabbing flex flex-col justify-between">
                         <div className="flex items-start gap-4 mb-6">
                            <div className="w-12 h-12 rounded-full bg-linear-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold text-lg shadow-lg shrink-0">
@@ -220,14 +225,14 @@ export default function Testimonials() {
                               <p className="text-sm text-blue-400/80 font-medium mt-1 truncate">{item.role}</p>
                            </div>
                         </div>
-                        <p className="text-gray-300/90 italic leading-relaxed text-[15px] mt-auto">
+                        <p className="text-gray-300/90 italic leading-relaxed text-[15px] mt-auto whitespace-pre-wrap">
                            "{item.quote}"
                         </p>
                      </div>
-                  </div>
+                  </SplideSlide>
                ))}
-            </div>
-         </div>
+            </SplideTrack>
+         </Splide>
       </div>
 
       <AnimatePresence>

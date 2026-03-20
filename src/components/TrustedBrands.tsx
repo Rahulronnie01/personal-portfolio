@@ -2,6 +2,7 @@
 
 import { motion, useAnimate } from "framer-motion";
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 // @ts-ignore
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
 import { AutoScroll } from '@splidejs/splide-extension-auto-scroll';
@@ -100,10 +101,12 @@ onMouseLeave={() => animation1.current?.play()}
 key={i}
 className="flex items-center justify-center"
 >
-<img
+<Image
 src={brand}
 alt="brand"
-className="h-20 md:h-24 object-contain opacity-80 hover:opacity-100 hover:scale-150 transition duration-300"
+width={160}
+height={80}
+className="h-20 md:h-24 w-auto object-contain opacity-80 hover:opacity-100 hover:scale-150 transition duration-300"
 />
 </div>
 ))}
@@ -123,10 +126,12 @@ onMouseLeave={() => animation2.current?.play()}
 key={i}
 className="flex items-center justify-center"
 >
-<img
+<Image
 src={brand}
 alt="brand"
-className="h-20 md:h-24 object-contain opacity-80 hover:opacity-100 hover:scale-150 transition duration-300"
+width={160}
+height={80}
+className="h-20 md:h-24 w-auto object-contain opacity-80 hover:opacity-100 hover:scale-150 transition duration-300"
 />
 </div>
 ))}
@@ -157,7 +162,7 @@ className="h-20 md:h-24 object-contain opacity-80 hover:opacity-100 hover:scale-
     <SplideTrack className="flex items-center h-20">
       {[...row1, ...row1, ...row1].map((brand, i) => (
         <SplideSlide key={`m1-${i}`} className="flex justify-center items-center h-full">
-          <img src={brand} alt="brand" className="h-14 w-auto object-contain opacity-70" />
+          <Image src={brand} alt="brand" width={140} height={70} className="h-14 w-auto object-contain opacity-70" />
         </SplideSlide>
       ))}
     </SplideTrack>
@@ -185,7 +190,7 @@ className="h-20 md:h-24 object-contain opacity-80 hover:opacity-100 hover:scale-
     <SplideTrack className="flex items-center h-20">
       {[...row2, ...row2, ...row2].map((brand, i) => (
         <SplideSlide key={`m2-${i}`} className="flex justify-center items-center h-full">
-          <img src={brand} alt="brand" className="h-14 w-auto object-contain opacity-70" />
+          <Image src={brand} alt="brand" width={140} height={70} className="h-14 w-auto object-contain opacity-70" />
         </SplideSlide>
       ))}
     </SplideTrack>
