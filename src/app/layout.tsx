@@ -9,6 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://yourportfolio.com"), // Update this to your actual domain
   title: "Rahul Kumar | Social Media Manager & Growth Strategist",
   description: "Building high-growth Social Media ecosystems and scaling brands with content, community, and analytics.",
   openGraph: {

@@ -18,7 +18,7 @@ export default function Overlay({ scrollYProgress }: { scrollYProgress: any }) {
         {/* Section 1 */}
         <motion.div 
             style={{ opacity: opacity1, y: y1 }}
-            className="absolute inset-0 flex items-center justify-center p-8"
+            className="absolute inset-0 flex items-center max-md:items-end justify-center p-8 max-md:pb-40"
         >
             <div className="text-center">
                 <h1 className="text-6xl md:text-8xl font-bold tracking-tight mb-4">Rahul Kumar.</h1>
