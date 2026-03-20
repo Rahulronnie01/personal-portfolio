@@ -23,7 +23,7 @@ export default function Hero() {
           src="/herrrrooo banner.png"
           alt="Rahul Kumar Hero Background"
           fill
-          className="object-cover opacity-85 object-center scale-[1.05] origin-bottom"
+          className="object-cover opacity-85 object-center"
           priority
           quality={100}
         />
