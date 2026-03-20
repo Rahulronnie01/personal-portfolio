@@ -20,7 +20,7 @@ export default function Hero() {
       {/* Mobile View: Highly Optimized Static Image */}
       <div className="block md:hidden relative h-[100dvh] w-full overflow-hidden bg-black pt-16">
         <Image
-          src="/mobile-herro.jpg"
+          src="/onemorehero.jpeg"
           alt="Rahul Kumar Hero Background"
           fill
           className="object-cover opacity-85 object-center"
