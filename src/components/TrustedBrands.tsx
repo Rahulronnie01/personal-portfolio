@@ -9,30 +9,30 @@ import { AutoScroll } from '@splidejs/splide-extension-auto-scroll';
 import '@splidejs/react-splide/css/core';
 
 const BRANDS = [
-  { src: "/brands/ahoora.png", url: "#" },
-  { src: "/brands/beyou.png", url: "https://www.beyoufashions.in/" },
-  { src: "/brands/broadstar.png", url: "https://broadstar.in/" },
-  { src: "/brands/bunaiwala.png", url: "#" },
-  { src: "/brands/feranoid.png", url: "#" },
-  { src: "/brands/gulabri.png", url: "#" },
-  { src: "/brands/gulmohar.png", url: "#" },
-  { src: "/brands/hum.png", url: "#" },
-  { src: "/brands/ichaa.png", url: "#" },
-  { src: "/brands/khsual.png", url: "#" },
-  { src: "/brands/kurti.png", url: "#" },
-  { src: "/brands/laad.png", url: "#" },
-  { src: "/brands/ls.png", url: "#" },
-  { src: "/brands/miramaar.png", url: "#" },
-  { src: "/brands/nehamta.png", url: "#" },
-  { src: "/brands/nook.png", url: "#" },
-  { src: "/brands/ph.png", url: "#" },
-  { src: "/brands/pink.png", url: "#" },
-  { src: "/brands/pirul.png", url: "#" },
-  { src: "/brands/quickflo.png", url: "#" },
-  { src: "/brands/Rimika.png", url: "https://rimikajaipur.com/" },
-  { src: "/brands/rr.png", url: "#" },
-  { src: "/brands/stylm.png", url: "#" },
-  { src: "/brands/zeyora.png", url: "#" }
+  "/brands/ahoora.png",
+  "/brands/beyou.png",
+  "/brands/broadstar.png",
+  "/brands/bunaiwala.png",
+  "/brands/feranoid.png",
+  "/brands/gulabri.png",
+  "/brands/gulmohar.png",
+  "/brands/hum.png",
+  "/brands/ichaa.png",
+  "/brands/khsual.png",
+  "/brands/kurti.png",
+  "/brands/laad.png",
+  "/brands/ls.png",
+  "/brands/miramaar.png",
+  "/brands/nehamta.png",
+  "/brands/nook.png",
+  "/brands/ph.png",
+  "/brands/pink.png",
+  "/brands/pirul.png",
+  "/brands/quickflo.png",
+  "/brands/rimika.png",
+  "/brands/rr.png",
+  "/brands/stylm.png",
+  "/brands/zeyora.png"
 ];
 
 // Trusted Brands Component
@@ -99,17 +99,15 @@ export default function TrustedBrands() {
 
                   <div
                     key={i}
-                    className="flex items-center justify-center cursor-pointer"
+                    className="flex items-center justify-center"
                   >
-                    <a href={brand.url} target="_blank" rel="noopener noreferrer">
-                      <Image
-                        src={brand.src}
-                        alt="brand"
-                        width={160}
-                        height={80}
-                        className="h-20 md:h-24 w-auto object-contain opacity-80 hover:opacity-100 hover:scale-150 transition duration-300"
-                      />
-                    </a>
+                    <Image
+                      src={brand}
+                      alt="brand"
+                      width={160}
+                      height={80}
+                      className="h-20 md:h-24 w-auto object-contain opacity-80 hover:opacity-100 hover:scale-150 transition duration-300"
+                    />
                   </div>
                 ))}
           </motion.div>
@@ -126,17 +124,15 @@ export default function TrustedBrands() {
 
                 <div
                   key={i}
-                  className="flex items-center justify-center cursor-pointer"
+                  className="flex items-center justify-center"
                 >
-                  <a href={brand.url} target="_blank" rel="noopener noreferrer">
-                    <Image
-                      src={brand.src}
-                      alt="brand"
-                      width={160}
-                      height={80}
-                      className="h-20 md:h-24 w-auto object-contain opacity-80 hover:opacity-100 hover:scale-150 transition duration-300"
-                    />
-                  </a>
+                  <Image
+                    src={brand}
+                    alt="brand"
+                    width={160}
+                    height={80}
+                    className="h-20 md:h-24 w-auto object-contain opacity-80 hover:opacity-100 hover:scale-150 transition duration-300"
+                  />
                 </div>
               ))}
           </motion.div>
@@ -166,9 +162,7 @@ export default function TrustedBrands() {
             <SplideTrack className="flex items-center h-20">
               {[...row1, ...row1, ...row1].map((brand, i) => (
                 <SplideSlide key={`m1-${i}`} className="flex justify-center items-center h-full">
-                  <a href={brand.url} target="_blank" rel="noopener noreferrer">
-                    <Image src={brand.src} alt="brand" width={140} height={70} className="h-14 w-auto object-contain opacity-70" />
-                  </a>
+                  <Image src={brand} alt="brand" width={140} height={70} className="h-14 w-auto object-contain opacity-70" />
                 </SplideSlide>
               ))}
             </SplideTrack>
@@ -196,9 +190,7 @@ export default function TrustedBrands() {
             <SplideTrack className="flex items-center h-20">
               {[...row2, ...row2, ...row2].map((brand, i) => (
                 <SplideSlide key={`m2-${i}`} className="flex justify-center items-center h-full">
-                  <a href={brand.url} target="_blank" rel="noopener noreferrer">
-                    <Image src={brand.src} alt="brand" width={140} height={70} className="h-14 w-auto object-contain opacity-70" />
-                  </a>
+                  <Image src={brand} alt="brand" width={140} height={70} className="h-14 w-auto object-contain opacity-70" />
                 </SplideSlide>
               ))}
             </SplideTrack>
